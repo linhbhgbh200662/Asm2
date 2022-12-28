@@ -2,6 +2,22 @@ const { Int32, ObjectId } = require('bson')
 var express = require('express')
 var app = express()
 const {findProductById, updateProduct, deleteProductById, getAllProduct, insertProduct, searchProductByName} = require('./databaseHandler')
+const hbs = require('hbs')
+const fs = require('fs')
+const path = require('path')
+
+var partialDir = path.join(__dirname, '/views')
+var filename = fs.readdirSync(partialDir)
+filename.forEach(function(file) {
+    var matches = /^([^.]+).hbs$/.exec(file)
+    if (!matches) {
+        return
+    }
+    var name = matches[1]
+    var template = fs.readFileSync(partialDir + '/' + file, 'utf8')
+    hbs.registerPartial(name, template)
+})
+
 
 app.set('view engine','hbs')
 
@@ -26,9 +42,17 @@ app.post('/new',async (req,res)=>
         picture: picture,
         qty : Number.parseInt(qty),
     }
+    if(isNaN(qty)){ 
+        let modelError ={
+                    qtyError:"You must enter Number",                
+                };            
+            res.render('newProduct',{results:modelError});
+            }
+    else{                
     let id = await insertProduct(newProduct)
     console.log(id)
     res.render('home')
+    }
 
 })
 
