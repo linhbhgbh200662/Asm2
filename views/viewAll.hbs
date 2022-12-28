@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>1644</title>
+
+    {{!-- Bootstrap --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+   <a class="navbar-brand" style="color:rgb(114, 249, 110)" href="/">Home</a>
+  <body>
+    <h1 class="contain text-center mt-3">BBei List</h1>
+    <form action="/search" method="post">
+    Name <input type="text" name="search">
+    <input type="submit" value="Search">
+    </form>
+    <ul>
+       <table class="table table-bordered text-center color = ">
+        <tr>
+            <th class="h1" colspan="3">BBei List</th>
+            <th>
+                <a class="btn btn-success" href="/new">Add</a>
+            </th>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <th>Img</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+        <tr>
+                {{#each results}}
+                   <td>{{name}}</td>
+                   <td><img src="{{picture}}" width="150" height="100"/></td>
+                    <td>{{price}} $</td>
+                    <td>{{qty}}</td>
+                    <td>
+                      <a href="/delete?id={{_id}}" onclick="return confirm('Are you nut?')">Delete</a>
+                      <a href="/Edit?id={{_id}}">Edit</a>
+                    </td>
+        </tr>
+                {{/each}}
+       </table>
+    </ul>
+    
+</body>
+</html>
