@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient
-var url = 'mongodb+srv://linhhuong:linhhuong882002@cluster0.pplrl3a.mongodb.net/test'
+var url = 'mongodb+srv://Linh:linh@cluster0.pplrl3a.mongodb.net/test'
 const { Int32, ObjectId } = require('bson')
 
 async function insertProduct(newProduct) {

@@ -1,7 +1,7 @@
 const { Int32, ObjectId } = require('bson')
 var express = require('express')
 var app = express()
-const {findProductById, updateProduct, deleteProductById, getAllProduct, insertProduct, searchProductByName} = require('./databasehandler')
+const {findProductById, updateProduct, deleteProductById, getAllProduct, insertProduct, searchProductByName} = require('./databaseHandler')
 
 app.set('view engine','hbs')
 
