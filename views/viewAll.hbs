@@ -31,9 +31,16 @@
         </tr>
         <tr>
                 {{#each results}}
-                   <td>{{name}}</td>
-                   <td><img src="{{picture}}" width="150" height="100"/></td>
-                    <td>{{price}} $</td>
+                    <td>{{name}}</td>
+                    <td><img src="{{picture}}" width="150" height="100"/></td>
+                    {{!-- <td>{{price}} $</td> --}}
+                    {{#if (checkPrice price)}}
+                    <td style="color: red;">{{price}}</td>
+                    {{else if price}}
+                    <td>{{price}}</td>
+                    {{else}}
+                    <td style="color:rgb(138, 229, 243) ;">Not Available</td>
+                    {{/if}}
                     <td>{{qty}}</td>
                     <td>
                       <a href="/delete?id={{_id}}" onclick="return confirm('Are you nut?')">Delete</a>
@@ -46,3 +53,18 @@
     
 </body>
 </html>
+
+
+
+
+
+
+
+
+{{!-- {{#if (checkPrice price)}}
+                      <td style="color: red;">{{country}}</td>
+                    {{else if price}}
+                      <td>{{price}}</td>
+                    {{else}}
+                      <td style="color:rgb(88, 243, 98) ;">Not Available</td>
+                    {{/if}} --}}

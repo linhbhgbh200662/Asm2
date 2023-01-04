@@ -5,7 +5,7 @@ const {findProductById, updateProduct, deleteProductById, getAllProduct, insertP
 const hbs = require('hbs')
 const fs = require('fs')
 const path = require('path')
-
+const {handlebar} = require('hbs')
 var partialDir = path.join(__dirname, '/views')
 var filename = fs.readdirSync(partialDir)
 filename.forEach(function(file) {
@@ -18,6 +18,9 @@ filename.forEach(function(file) {
     hbs.registerPartial(name, template)
 })
 
+hbs.registerHelper("checkPrice", function(price){
+    return price >= 50;
+})
 
 app.set('view engine','hbs')
 
@@ -48,6 +51,12 @@ app.post('/new',async (req,res)=>
                 };            
             res.render('newProduct',{results:modelError});
             }
+    // else if(price > 50 ){
+    //     let modelError ={
+    //         priceError: "",                
+    //     };            
+    // res.render('viewAll',{results:modelError});
+    // }        
     else{                
     let id = await insertProduct(newProduct)
     console.log(id)
@@ -92,7 +101,16 @@ app.get('/',(req,res)=>{
     res.render('home')
 })
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 5000
 app.listen(PORT,()=>{
     console.log("Server is running at: ",PORT)
 })
+
+
+
+
+
+
+//handlebar.registerHelper('checkPrice',function(price){
+//     return price == 50
+// })
