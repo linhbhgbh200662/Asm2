@@ -19,9 +19,9 @@ filename.forEach(function(file) {
 })
 
 hbs.registerHelper("checkPrice", function(price, qty){
-    if (price >= 50 && qty>=50) 
+    if (price >= 50 && qty>=50) {
     return true
-    else
+    }
     return false
 })
 
