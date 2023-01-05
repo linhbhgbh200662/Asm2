@@ -18,9 +18,16 @@ filename.forEach(function(file) {
     hbs.registerPartial(name, template)
 })
 
-hbs.registerHelper("checkPrice", function(price){
-    return price >= 50;
+hbs.registerHelper("checkPrice", function(price, qty){
+    if (price >= 50 && qty>=50) 
+    return true
+    else
+    return false
 })
+
+// hbs.registerHelper("checkPrice", function(price){
+//     return price >= 50
+// })
 
 app.set('view engine','hbs')
 

@@ -33,13 +33,12 @@
                 {{#each results}}
                     <td>{{name}}</td>
                     <td><img src="{{picture}}" width="150" height="100"/></td>
-                    {{!-- <td>{{price}} $</td> --}}
-                    {{#if (checkPrice price)}}
+                    
+                    {{#if (checkPrice price qty)}}
                     <td style="color: red;">{{price}}</td>
                     {{else if price}}
                     <td>{{price}}</td>
-                    {{else}}
-                    <td style="color:rgb(138, 229, 243) ;">Not Available</td>
+                    
                     {{/if}}
                     <td>{{qty}}</td>
                     <td>
